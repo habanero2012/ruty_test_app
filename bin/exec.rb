@@ -1,3 +1,4 @@
+require 'net/http'
 require 'newrelic_rpm'
 
 NewRelic::Agent.manual_start
@@ -10,5 +11,8 @@ $stdout.flush
 
 sleep duration
 raise 'unlucky error' if duration == 1
+
+puts 'start network access'
+puts Net::HTTP.get('www.example.com', '/index.html')
 
 puts 'end'
